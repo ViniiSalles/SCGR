@@ -15,9 +15,9 @@ export function PersonList() {
         <TableHeader>
           <TableRow>
             <TableHead>ID</TableHead>
-            <TableHead>Name</TableHead>
-            <TableHead>Age</TableHead>
-            <TableHead>Actions</TableHead>
+            <TableHead>Nome</TableHead>
+            <TableHead>Idade</TableHead>
+            <TableHead>Acoes</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

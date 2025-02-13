@@ -23,13 +23,13 @@ export function AddTransaction() {
     setError("")
 
     if (!description || !value || !type || !personId) {
-      setError("Please fill in all fields")
+      setError("Por favor, preencha todos os campos")
       return
     }
 
     const valueNum = Number.parseFloat(value)
     if (isNaN(valueNum) || valueNum <= 0) {
-      setError("Please enter a valid positive value")
+      setError("Por favoir, insira um valor válido")
       return
     }
 
@@ -38,47 +38,47 @@ export function AddTransaction() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Add Transaction</CardTitle>
+        <CardTitle>Cadastrar Transacao</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
+            <Label htmlFor="description">Descricao</Label>
             <Input
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Enter description"
+              placeholder="Descreva a transacao"
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="value">Value</Label>
+            <Label htmlFor="value">Valor</Label>
             <Input
               id="value"
               type="number"
               step="0.01"
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              placeholder="Enter value"
+              placeholder="Digite o valor"
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="type">Type</Label>
+            <Label htmlFor="type">Tipo</Label>
             <Select value={type} onValueChange={(value: "expense" | "income") => setType(value)}>
               <SelectTrigger>
                 <SelectValue placeholder="Select type" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="expense">Expense</SelectItem>
-                <SelectItem value="income">Income</SelectItem>
+                <SelectItem value="expense">Despesa</SelectItem>
+                <SelectItem value="income">Receita</SelectItem>
               </SelectContent>
             </Select>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="person">Person</Label>
+            <Label htmlFor="person">Pessoa</Label>
             <Select value={personId} onValueChange={setPersonId}>
               <SelectTrigger>
-                <SelectValue placeholder="Select person" />
+                <SelectValue placeholder="Seleciona a pessoa" />
               </SelectTrigger>
               <SelectContent>
                 {people.map((person) => (
@@ -90,7 +90,7 @@ export function AddTransaction() {
             </Select>
           </div>
           {error && <p className="text-sm text-red-500">{error}</p>}
-          <Button type="submit">Add Transaction</Button>
+          <Button type="submit">Cadastrar</Button>
         </form>
       </CardContent>
     </Card>

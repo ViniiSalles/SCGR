@@ -14,10 +14,10 @@ export function TransactionList() {
         <TableHeader>
           <TableRow>
             <TableHead>ID</TableHead>
-            <TableHead>Description</TableHead>
-            <TableHead>Value</TableHead>
-            <TableHead>Type</TableHead>
-            <TableHead>Person ID</TableHead>
+            <TableHead>Descricao</TableHead>
+            <TableHead>Valor</TableHead>
+            <TableHead>Tipo</TableHead>
+            <TableHead>Pessoa ID</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

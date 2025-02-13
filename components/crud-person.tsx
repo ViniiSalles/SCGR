@@ -16,13 +16,13 @@ export function AddPerson() {
     setError("")
 
     if (!name || !age) {
-      setError("Please fill in all fields")
+      setError("Por favor, preencha todos os campos")
       return
     }
 
     const ageNum = Number.parseInt(age)
     if (isNaN(ageNum) || ageNum < 0) {
-      setError("Please enter a valid age")
+      setError("Por favor, insira uma idade válida")
       return
     }
 
@@ -31,26 +31,26 @@ export function AddPerson() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Add Person</CardTitle>
+        <CardTitle>Cadastrar Pessoa</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="name">Name</Label>
-            <Input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter name" />
+            <Label htmlFor="name">Nome</Label>
+            <Input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Digite o nome" />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="age">Age</Label>
+            <Label htmlFor="age">Idade</Label>
             <Input
               id="age"
               type="number"
               value={age}
               onChange={(e) => setAge(e.target.value)}
-              placeholder="Enter age"
+              placeholder="Digite a idade"
             />
           </div>
           {error && <p className="text-sm text-red-500">{error}</p>}
-          <Button type="submit">Add Person</Button>
+          <Button type="submit">Cadastrar</Button>
         </form>
       </CardContent>
     </Card>

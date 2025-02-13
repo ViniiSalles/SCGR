@@ -21,17 +21,17 @@ export function TotalsSummary() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Financial Summary</CardTitle>
+        <CardTitle>Consulta de Totais</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="rounded-md border">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Total Income</TableHead>
-                <TableHead>Total Expenses</TableHead>
-                <TableHead>Balance</TableHead>
+                <TableHead>Nome</TableHead>
+                <TableHead>Total Receita</TableHead>
+                <TableHead>Total Despesa</TableHead>
+                <TableHead>Saldo</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -46,7 +46,7 @@ export function TotalsSummary() {
                 </TableRow>
               ))}
               <TableRow className="font-bold">
-                <TableCell>GRAND TOTAL</TableCell>
+                <TableCell>SALDO TOTAL</TableCell>
                 <TableCell className="text-green-600">${grandTotals.income.toFixed(2)}</TableCell>
                 <TableCell className="text-red-600">${grandTotals.expenses.toFixed(2)}</TableCell>
                 <TableCell className={grandTotals.balance >= 0 ? "text-green-600" : "text-red-600"}>
