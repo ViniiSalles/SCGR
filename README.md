@@ -20,6 +20,7 @@ Sistema capaz de cadastrar e acompanhar todos os gastos residenciais de todos os
 - TypeScript
 - React JS
 - Node JS
+- Shadcn
 
 ## Licença
 
