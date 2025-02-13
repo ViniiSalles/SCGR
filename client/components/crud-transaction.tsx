@@ -1,12 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import type { Person } from "@/client/lib/types"
-import { Button } from "@/client/components/ui/button"
-import { Input } from "@/client/components/ui/input"
-import { Label } from "@/client/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/client/components/ui/select"
-import { Card, CardContent, CardHeader, CardTitle } from "@/client/components/ui/card"
+import type { Person } from "@/lib/types"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export function AddTransaction() {
   const [description, setDescription] = useState("")

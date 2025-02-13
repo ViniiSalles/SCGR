@@ -1,9 +1,9 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import type { PersonWithTotals } from "@/client/lib/types"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/client/components/ui/table"
-import { Card, CardContent, CardHeader, CardTitle } from "@/client/components/ui/card"
+import type { PersonWithTotals } from "@/lib/types"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export function TotalsSummary() {
   const [peopleWithTotals, setPeopleWithTotals] = useState<PersonWithTotals[]>([])

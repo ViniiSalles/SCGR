@@ -1,9 +1,9 @@
-import { PersonList } from "@/client/components/list-person"
-import { AddPerson } from "@/client/components/crud-person"
-import { AddTransaction } from "@/client/components/crud-transaction"
-import { TransactionList } from "@/client/components/list-transaction"
-import { TotalsSummary } from "@/client/components/list-totals"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/client/components/ui/tabs"
+import { PersonList } from "@/components/list-person"
+import { AddPerson } from "@/components/crud-person"
+import { AddTransaction } from "@/components/crud-transaction"
+import { TransactionList } from "@/components/list-transaction"
+import { TotalsSummary } from "@/components/list-totals"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function Home() {
   return (

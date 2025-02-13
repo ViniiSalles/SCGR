@@ -1,9 +1,9 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import type { Person } from "@/client/lib/types"
-import { Button } from "@/client/components/ui/button"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/client/components/ui/table"
+import type { Person } from "@/lib/types"
+import { Button } from "@/components/ui/button"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 
 export function PersonList() {
   const [people, setPeople] = useState<Person[]>([])
