@@ -21,6 +21,9 @@ Sistema capaz de cadastrar e acompanhar todos os gastos residenciais de todos os
 - React JS
 - Node JS
 - Shadcn
+- Vercel
+- Postgrees
+- Prisma ORM
 
 ## Licença
 
