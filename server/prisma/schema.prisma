@@ -12,3 +12,26 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Pessoa {
+  id     Int    @id @default(autoincrement()) // Identificador único
+  nome   String // Nome da pessoa
+  idade  Int    // Idade da pessoa
+  
+  transacoes Transacao[] // Relacionamento com transações
+}
+
+model Transacao {
+  id        Int     @id @default(autoincrement()) // Identificador único
+  descricao String  // Descrição da transação
+  valor     Float   // Valor da transação
+  tipo      TipoTransacao // Tipo da transação (despesa/receita)
+  pessoaId  Int     // ID da pessoa relacionada
+  
+  pessoa    Pessoa  @relation(fields: [pessoaId], references: [id], onDelete: Cascade) // Relacionamento com Pessoa
+}
+
+enum TipoTransacao {
+  receita
+  despesa
+}
