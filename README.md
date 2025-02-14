@@ -20,6 +20,7 @@ Lembrando que foi feito com Banco de Dados online postgress, espere 1 ou 2 segun
 
 ## Tecnologias Utilizadas
 
+- Yarn
 - Next JS
 - TypeScript
 - React JS
