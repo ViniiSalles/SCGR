@@ -5,12 +5,12 @@ const prisma = new PrismaClient();
 class PersonController {
 
     async createPerson(req, res) {
-        const {nome, idade} = req.body;
+        const {name, age} = req.body;
         try {
             const person = await prisma.pessoa.create({
                 data: {
-                    nome,
-                    idade
+                    nome:name,
+                    idade:age
                 }
             });
             res.json(person);

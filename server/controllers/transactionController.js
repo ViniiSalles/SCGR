@@ -10,7 +10,6 @@ class TransactionController{
                 data: {
                     valor: value,
                     descricao: description,
-                    pessoaId: personId,
                     tipo: type,
                     pessoa: { connect: { id: personId } }
                 }

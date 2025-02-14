@@ -1,15 +1,17 @@
 "use client"
 
-import { useState } from "react"
+import { use, useState } from "react"
+import axios from "axios"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-export function AddPerson() {
+export default function AddPerson() {
   const [name, setName] = useState("")
   const [age, setAge] = useState("")
   const [error, setError] = useState("")
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -24,6 +26,15 @@ export function AddPerson() {
     if (isNaN(ageNum) || ageNum < 0) {
       setError("Por favor, insira uma idade válida")
       return
+    }
+
+    try {
+      await axios.post("http://localhost:3001/persons", { name, age: ageNum })
+      setName("")
+      setAge("")
+    } catch (err) {
+      setError("Erro ao cadastrar pessoa")
+      console.error("Erro ao cadastrar pessoa:", err)
     }
 
   }

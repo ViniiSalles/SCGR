@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import axios from "axios"
 import type { Person } from "@/lib/types"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -8,15 +9,24 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-export function AddTransaction() {
+export default function AddTransaction() {
   const [description, setDescription] = useState("")
   const [value, setValue] = useState("")
-  const [type, setType] = useState<"expense" | "income">("expense")
+  const [type, setType] = useState<"despesa" | "receita">("despesa")
   const [personId, setPersonId] = useState("")
   const [people, setPeople] = useState<Person[]>([])
   const [error, setError] = useState("")
 
-
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/persons")
+      .then((res) => {
+        setPeople(res.data);
+      })
+      .catch((err) => {
+        console.error("Erro ao buscar pessoas:", err);
+      });
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -27,12 +37,37 @@ export function AddTransaction() {
       return
     }
 
+    const selectedPerson = people.find(person => person.id.toString() === personId);
+    if (!selectedPerson) {
+      setError("Pessoa não encontrada")
+      return
+    }
+
+    if (selectedPerson.idade < 18 && type === "receita") {
+      setError("Pessoas menores de 18 anos só podem cadastrar despesas.")
+      return
+    }
+
     const valueNum = Number.parseFloat(value)
     if (isNaN(valueNum) || valueNum <= 0) {
       setError("Por favoir, insira um valor válido")
       return
     }
-
+    try {
+      await axios.post("http://localhost:3001/transactions", {
+        description,
+        value: valueNum,
+        type,
+        personId: Number.parseInt(personId),
+      })
+      
+      setDescription("")
+      setValue("")
+      setType("despesa")
+      setPersonId("")
+    } catch (err) {
+      setError
+    }
   }
 
   return (
@@ -64,13 +99,13 @@ export function AddTransaction() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="type">Tipo</Label>
-            <Select value={type} onValueChange={(value: "expense" | "income") => setType(value)}>
+            <Select value={type} onValueChange={(value: "despesa" | "receita") => setType(value)}>
               <SelectTrigger>
-                <SelectValue placeholder="Select type" />
+                <SelectValue placeholder="Selecione o tipo" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="expense">Despesa</SelectItem>
-                <SelectItem value="income">Receita</SelectItem>
+                <SelectItem value="despesa">Despesa</SelectItem>
+                <SelectItem value="receita">Receita</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -83,7 +118,7 @@ export function AddTransaction() {
               <SelectContent>
                 {people.map((person) => (
                   <SelectItem key={person.id} value={person.id.toString()}>
-                    {person.name}
+                    {person.nome}
                   </SelectItem>
                 ))}
               </SelectContent>

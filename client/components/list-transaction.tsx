@@ -1,12 +1,23 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import axios from "axios"
 import type { Transaction } from "@/lib/types"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 
-export function TransactionList() {
+export default function TransactionList() {
   const [transactions, setTransactions] = useState<Transaction[]>([])
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/transactions")
+      .then((res) => {
+        setTransactions(res.data);
+      })
+      .catch((err) => {
+        console.error("Erro ao buscar transacoes:", err);
+      });
+  }, []);
 
   return (
     <div className="rounded-md border">
@@ -24,12 +35,12 @@ export function TransactionList() {
           {transactions.map((transaction) => (
             <TableRow key={transaction.id}>
               <TableCell>{transaction.id}</TableCell>
-              <TableCell>{transaction.description}</TableCell>
-              <TableCell>${transaction.value.toFixed(2)}</TableCell>
-              <TableCell className={transaction.type === "income" ? "text-green-600" : "text-red-600"}>
-                {transaction.type}
+              <TableCell>{transaction.descricao}</TableCell>
+              <TableCell>${transaction.valor.toFixed(2)}</TableCell>
+              <TableCell className={transaction.tipo === "receita" ? "text-green-600" : "text-red-600"}>
+                {transaction.tipo}
               </TableCell>
-              <TableCell>{transaction.personId}</TableCell>
+              <TableCell>{transaction.pessoaId}</TableCell>
             </TableRow>
           ))}
         </TableBody>
